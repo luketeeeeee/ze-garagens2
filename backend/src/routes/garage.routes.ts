@@ -7,7 +7,7 @@ router.route('/').get(GarageController.findAll);
 router.route('/:garageId').get(GarageController.findById);
 router.route('/').post(GarageController.create);
 router.route('/:garageId').put(GarageController.update);
-router.route('/:garageId').delete(GarageController.delete);
+router.route('/:garageId').delete(GarageController.remove);
 
 // auth related routes
 // ...
