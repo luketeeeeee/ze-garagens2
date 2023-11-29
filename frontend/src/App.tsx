@@ -9,6 +9,7 @@ import { Toaster } from 'react-hot-toast';
 import { useAuth } from './hooks/use-auth';
 import { Login } from './pages/Login';
 import { MainPage } from './pages/MainPage';
+import { Register } from './pages/Register';
 
 function App() {
 	//@ts-ignore
@@ -28,6 +29,10 @@ function App() {
 			element: <MainPage />,
 		},
 		{
+			path: '/cadastro',
+			element: <Navigate replace to="/" />,
+		},
+		{
 			path: '/login',
 			element: <Navigate replace to="/" />,
 		},
@@ -37,6 +42,10 @@ function App() {
 		{
 			path: '/',
 			element: <Navigate replace to="/login" />,
+		},
+		{
+			path: '/cadastro',
+			element: <Register />,
 		},
 		{
 			path: '/login',
