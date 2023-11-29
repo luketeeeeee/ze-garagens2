@@ -7,7 +7,7 @@ import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 import { Container } from '../../components/Container';
 import { ZGLogo } from '../../components/ZGLogo';
-import { useUsers } from '../../hooks/use-users';
+import { useUsers } from '../../hooks';
 import { CreateUserSchemaType, createUserSchema } from './Register.helpers';
 
 export const Register = () => {
@@ -32,7 +32,7 @@ export const Register = () => {
 
 	return (
 		<Container>
-			<div className="bg-main-img flex h-full items-center justify-center gap-5">
+			<div className="flex h-full items-center justify-center gap-5">
 				<ZGLogo />
 				<div className="flex h-[650px] w-[500px] items-center rounded-lg bg-[#FF0000] bg-opacity-50">
 					<form

@@ -1,3 +1,10 @@
+import { Container } from '../../components/Container';
+import { Header } from '../../components/Header';
+
 export const MainPage = () => {
-	return <div>mainpage</div>;
+	return (
+		<Container>
+			<Header />
+		</Container>
+	);
 };

@@ -33,7 +33,7 @@ export const Login = () => {
 
 	return (
 		<Container>
-			<div className="bg-main-img flex h-full items-center justify-center gap-5">
+			<div className="flex h-full items-center justify-center gap-5">
 				<ZGLogo />
 				<div className="flex h-[375px] w-[500px] items-center rounded-lg bg-[#FF0000] bg-opacity-50">
 					<form onSubmit={handleSubmit} className="flex w-full flex-col px-10">
