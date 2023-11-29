@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useEffect } from 'react';
 import {
 	Navigate,
@@ -7,11 +6,15 @@ import {
 } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
+import { useAuth } from './hooks/use-auth';
+import { Login } from './pages/Login';
+import { MainPage } from './pages/MainPage';
+
 function App() {
 	//@ts-ignore
 	const user = JSON.parse(localStorage.getItem('token'));
 
-	const { fetchLoggedUserData, loggedUser } = useAuth();
+	const { fetchLoggedUserData } = useAuth();
 
 	if (user) {
 		useEffect(() => {
@@ -21,12 +24,20 @@ function App() {
 
 	const isLoggedInRouter = createBrowserRouter([
 		{
+			path: '/',
+			element: <MainPage />,
+		},
+		{
 			path: '/login',
 			element: <Navigate replace to="/" />,
 		},
 	]);
 
 	const notLoggedInRouter = createBrowserRouter([
+		{
+			path: '/',
+			element: <Navigate replace to="/login" />,
+		},
 		{
 			path: '/login',
 			element: <Login />,
