@@ -24,15 +24,26 @@ export const Header = () => {
 			</Link>
 
 			<div className="flex items-center gap-12 text-white">
-				<Link
-					to="/minhas-garagens"
-					className="rounded-2xl bg-blue-950 px-4 py-2 transition duration-300 hover:bg-blue-900"
-				>
-					Minhas garagens
-				</Link>
+				<div className="flex gap-6">
+					<Link
+						to="/cadastrar-garagem"
+						className="rounded-2xl bg-blue-950 px-4 py-2 transition duration-300 hover:bg-blue-900"
+					>
+						Cadastrar uma garagem
+					</Link>
+					<Link
+						to="/minhas-garagens"
+						className="rounded-2xl bg-blue-950 px-4 py-2 transition duration-300 hover:bg-blue-900"
+					>
+						Minhas garagens
+					</Link>
+				</div>
 
 				<div className="flex items-center gap-4">
-					<p>{loggedUser.name}</p>
+					<p>
+						Bem vindo,{' '}
+						{loggedUser.name.substring(0, loggedUser.name.indexOf(' '))}
+					</p>
 					<UserCircleIcon width={36} />
 					<Popover>
 						<PopoverTrigger>
