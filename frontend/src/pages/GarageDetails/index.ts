@@ -1,0 +1,1 @@
+export { GarageDetails } from './GarageDetails';

@@ -1,0 +1,1 @@
+export { ZGLogo } from './ZGLogo';

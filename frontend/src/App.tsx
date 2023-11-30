@@ -1,33 +1,93 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import { useEffect } from 'react';
+import {
+	Navigate,
+	RouterProvider,
+	createBrowserRouter,
+} from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+
+import { useAuth } from './hooks/use-auth';
+import { Login } from './pages/Login';
+import { MainPage } from './pages/MainPage';
+import { Register } from './pages/Register';
+import { UserGarages } from './pages/UserGarages';
+import { CreateGarage } from './pages/CreateGarage';
+import { GarageDetails } from './pages/GarageDetails';
 
 function App() {
-	const [count, setCount] = useState(0);
+	//@ts-ignore
+	const user = JSON.parse(localStorage.getItem('token'));
+
+	const { fetchLoggedUserData } = useAuth();
+
+	if (user) {
+		useEffect(() => {
+			fetchLoggedUserData(user.id);
+		}, []);
+	}
+
+	const isLoggedInRouter = createBrowserRouter([
+		{
+			path: '/',
+			element: <MainPage />,
+		},
+		{
+			path: '/cadastro',
+			element: <Navigate replace to="/" />,
+		},
+		{
+			path: '/login',
+			element: <Navigate replace to="/" />,
+		},
+		{
+			path: '/minhas-garagens',
+			element: <UserGarages />,
+		},
+		{
+			path: '/cadastrar-garagem',
+			element: <CreateGarage />,
+		},
+		{
+			path: '/garagem/:garageId',
+			element: <GarageDetails />,
+		},
+	]);
+
+	const notLoggedInRouter = createBrowserRouter([
+		{
+			path: '/',
+			element: <Navigate replace to="/login" />,
+		},
+		{
+			path: '/cadastro',
+			element: <Register />,
+		},
+		{
+			path: '/login',
+			element: <Login />,
+		},
+		{
+			path: '/minhas-garagens',
+			element: <Navigate replace to="/login" />,
+		},
+		{
+			path: '/cadastrar-garagem',
+			element: <Navigate replace to="/login" />,
+		},
+		{
+			path: '/garagem/:garageId',
+			element: <Navigate replace to="/login" />,
+		},
+	]);
 
 	return (
 		<>
-			<div>
-				<a href="https://vitejs.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
+			<Toaster />
+			{user ? (
+				<RouterProvider router={isLoggedInRouter} />
+			) : (
+				<RouterProvider router={notLoggedInRouter} />
+			)}
 		</>
 	);
 }

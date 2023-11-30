@@ -18,7 +18,6 @@ model User {
   email       String @unique
   password    String
   cpf         String @unique
-  address     String
 
   @@map("users")
 }
@@ -34,8 +33,8 @@ model Garage {
   city             String
   neighborhood     String
   street           String
-  number           Int
-  cep              String
+  number           Int?
+  cep              String?
 
   @@map("garages")
 }
