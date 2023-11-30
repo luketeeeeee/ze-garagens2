@@ -7,6 +7,7 @@ export const create = async (req: Request, res: Response) => {
 
     const newGarage = await createGarage({
       ...body,
+      available: true,
     });
 
     return res.status(201).json({
@@ -14,6 +15,7 @@ export const create = async (req: Request, res: Response) => {
       data: newGarage,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       message: 'erro interno no servidor',
     });

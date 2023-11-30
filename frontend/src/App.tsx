@@ -10,6 +10,8 @@ import { useAuth } from './hooks/use-auth';
 import { Login } from './pages/Login';
 import { MainPage } from './pages/MainPage';
 import { Register } from './pages/Register';
+import { UserGarages } from './pages/UserGarages';
+import { CreateGarage } from './pages/CreateGarage';
 
 function App() {
 	//@ts-ignore
@@ -36,6 +38,14 @@ function App() {
 			path: '/login',
 			element: <Navigate replace to="/" />,
 		},
+		{
+			path: '/minhas-garagens',
+			element: <UserGarages />,
+		},
+		{
+			path: '/cadastrar-garagem',
+			element: <CreateGarage />,
+		},
 	]);
 
 	const notLoggedInRouter = createBrowserRouter([
@@ -50,6 +60,14 @@ function App() {
 		{
 			path: '/login',
 			element: <Login />,
+		},
+		{
+			path: '/minhas-garagens',
+			element: <Navigate replace to="/login" />,
+		},
+		{
+			path: '/cadastrar-garagem',
+			element: <Navigate replace to="/login" />,
 		},
 	]);
 
