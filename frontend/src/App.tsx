@@ -12,6 +12,7 @@ import { MainPage } from './pages/MainPage';
 import { Register } from './pages/Register';
 import { UserGarages } from './pages/UserGarages';
 import { CreateGarage } from './pages/CreateGarage';
+import { GarageDetails } from './pages/GarageDetails';
 
 function App() {
 	//@ts-ignore
@@ -46,6 +47,10 @@ function App() {
 			path: '/cadastrar-garagem',
 			element: <CreateGarage />,
 		},
+		{
+			path: '/garagem/:garageId',
+			element: <GarageDetails />,
+		},
 	]);
 
 	const notLoggedInRouter = createBrowserRouter([
@@ -67,6 +72,10 @@ function App() {
 		},
 		{
 			path: '/cadastrar-garagem',
+			element: <Navigate replace to="/login" />,
+		},
+		{
+			path: '/garagem/:garageId',
 			element: <Navigate replace to="/login" />,
 		},
 	]);

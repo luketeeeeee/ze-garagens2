@@ -48,7 +48,7 @@ export const CreateGarage = () => {
 							>
 								<ArrowLeftCircleIcon width={44} />
 							</Link>
-							<h1 className="mb-8 ml-[20px] pt-8 text-center text-3xl font-semibold">
+							<h1 className="mb-8 flex w-full items-center justify-center pt-8 text-center text-3xl font-semibold">
 								Cadastre uma garagem
 							</h1>
 						</div>
@@ -129,7 +129,7 @@ export const CreateGarage = () => {
 
 						<button
 							type="submit"
-							className="mt-5 w-64  self-center rounded-2xl bg-blue-950 py-3 text-white transition duration-500 hover:bg-blue-900"
+							className="mt-5 w-64 self-center rounded-2xl bg-blue-950 py-3 text-white transition duration-500 hover:bg-blue-900"
 						>
 							Anunciar
 						</button>

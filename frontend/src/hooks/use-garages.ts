@@ -14,6 +14,7 @@ type CreateGarageProps = {
 };
 
 type GarageCardProps = {
+	id?: string;
 	available?: boolean;
 	pricePerDay?: string;
 	street?: string;

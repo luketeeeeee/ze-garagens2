@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 export const GarageCard = ({
+	id,
 	available,
 	pricePerDay,
 	street,
@@ -9,6 +10,7 @@ export const GarageCard = ({
 	owner,
 	number,
 }: {
+	id: string;
 	available: boolean;
 	pricePerDay: number;
 	street: string;
@@ -18,28 +20,37 @@ export const GarageCard = ({
 	number?: number;
 }) => {
 	return (
-		<div className="">
+		<div className="flex h-80 w-64 flex-col text-white">
 			{available ? (
-				<div className="h-10 bg-green-500">Disponível</div>
+				<div className="flex h-12 items-center justify-center rounded-t-lg bg-green-500 font-semibold text-white">
+					Disponível
+				</div>
 			) : (
-				<div className="h-10 bg-red-700">Alugada</div>
+				<div className="flex h-12 items-center justify-center rounded-t-lg bg-red-700 font-semibold text-white">
+					Alugada
+				</div>
 			)}
-			<div className="bg-black">
-				<div>
+			<div className="flex h-full flex-col items-center gap-4 rounded-b-lg bg-black bg-opacity-80 py-4">
+				<div className="flex flex-col items-center">
 					<p>{street}</p>
 					<p>{neighborhood}</p>
 
-					{number ? <p>Número{number}</p> : <></>}
+					{number ? <p>Número{number}</p> : <p>Sem número</p>}
 				</div>
 
-				<p>R$ {pricePerDay}</p>
+				<p className="text-2xl font-semibold">R$ {pricePerDay}</p>
 
-				<div>
+				<div className="flex flex-col items-center">
 					<p>{city}</p>
-					<p>Dono {owner}</p>
+					<p>Dono: {owner.substring(0, owner.indexOf(' '))}</p>
 				</div>
 
-				<Link to="/">Mais detalhes</Link>
+				<Link
+					to={`/garagem/${id}`}
+					className="rounded-2xl bg-blue-950 px-4 py-1 transition duration-300 hover:bg-blue-900"
+				>
+					Mais detalhes
+				</Link>
 			</div>
 		</div>
 	);

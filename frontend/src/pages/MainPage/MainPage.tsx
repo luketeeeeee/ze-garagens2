@@ -5,7 +5,7 @@ import { useGarages } from '../../hooks';
 import { GarageCard } from '../../components/GarageCard';
 
 type GarageCardProps = {
-	// id?: string,
+	id: string;
 	available: boolean;
 	pricePerDay: number;
 	street: string;
@@ -27,18 +27,21 @@ export const MainPage = () => {
 	return (
 		<Container>
 			<Header />
-			<div>
-				{garages.map((garage: GarageCardProps) => (
-					<GarageCard
-						available={garage.available}
-						city={garage.city}
-						neighborhood={garage.neighborhood}
-						street={garage.street}
-						number={garage.number}
-						pricePerDay={garage.pricePerDay}
-						owner={garage.owner}
-					/>
-				))}
+			<div className="px-14 pt-14">
+				<div>
+					{garages.map((garage: GarageCardProps) => (
+						<GarageCard
+							id={garage.id}
+							available={garage.available}
+							city={garage.city}
+							neighborhood={garage.neighborhood}
+							street={garage.street}
+							number={garage.number}
+							pricePerDay={garage.pricePerDay}
+							owner={garage.owner}
+						/>
+					))}
+				</div>
 			</div>
 		</Container>
 	);
