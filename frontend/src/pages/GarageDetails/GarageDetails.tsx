@@ -1,15 +1,18 @@
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline';
 
 import { Container } from '../../components/Container';
 import { Header } from '../../components/Header';
-import { useGarages } from '../../hooks';
+import { useAuth, useGarages } from '../../hooks';
 
 export const GarageDetails = () => {
+	const navigate = useNavigate();
+
 	const { garageId } = useParams();
 
-	const { garage, findGarageById } = useGarages();
+	const { loggedUser } = useAuth();
+	const { garage, findGarageById, rentGarage } = useGarages();
 
 	useEffect(() => {
 		findGarageById(garageId);
@@ -48,9 +51,21 @@ export const GarageDetails = () => {
 						</h1>
 					</div>
 
-					<button className="mt-10 w-64 self-center rounded-2xl bg-blue-950 py-3 text-white transition duration-500 hover:bg-blue-900">
-						Alugar
-					</button>
+					{garage.ownerId === loggedUser.id || !garage.available ? (
+						<p className="mt-7 self-center text-lg">
+							Você não pode alugar essa garagem no momento
+						</p>
+					) : (
+						<button
+							onClick={() => {
+								rentGarage(garageId);
+								setTimeout(() => navigate('/'), 1000);
+							}}
+							className="mt-10 w-64 self-center rounded-2xl bg-blue-950 py-3 text-white transition duration-500 hover:bg-blue-900"
+						>
+							Alugar
+						</button>
+					)}
 				</div>
 			</div>
 		</Container>

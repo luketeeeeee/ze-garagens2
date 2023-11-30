@@ -28,7 +28,7 @@ export const MainPage = () => {
 		<Container>
 			<Header />
 			<div className="px-14 pt-14">
-				<div>
+				<div className="grid grid-cols-6 gap-4">
 					{garages.map((garage: GarageCardProps) => (
 						<GarageCard
 							id={garage.id}

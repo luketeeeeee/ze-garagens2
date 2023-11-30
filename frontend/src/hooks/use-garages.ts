@@ -21,6 +21,7 @@ type GarageCardProps = {
 	neighborhood?: string;
 	city?: string;
 	owner?: string;
+	ownerId?: string;
 	number?: string;
 };
 
@@ -31,6 +32,7 @@ type useGaragesProps = {
 	findAllGarages: () => void;
 	findGaragesByOwnerId: (ownerId: string) => void;
 	findGarageById: (garageId: string | undefined) => void;
+	rentGarage: (garageId: string | undefined) => void;
 };
 
 export const useGarages = create<useGaragesProps>((set) => ({
@@ -125,5 +127,27 @@ export const useGarages = create<useGaragesProps>((set) => ({
 				set({ garage: result.data });
 			}
 		} catch (error) {}
+	},
+	rentGarage: async (garageId) => {
+		try {
+			await fetch(`${import.meta.env.VITE_API_URL}/garages/${garageId}`, {
+				method: 'PUT',
+				headers: {
+					Authorization: `${import.meta.env.VITE_API_KEY}`,
+					'Content-Type': 'application/json',
+				},
+			}).then(async (response) => {
+				if (!response.ok) {
+					return response.text().then((text) => {
+						throw new String(text);
+					});
+				}
+
+				toast.success('Garagem alugada com sucesso');
+			});
+		} catch (error: any) {
+			let errorJsonFormat = JSON.parse(error);
+			toast.error(errorJsonFormat.message);
+		}
 	},
 }));

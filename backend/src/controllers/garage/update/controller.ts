@@ -4,7 +4,7 @@ import { findGarageById, updateGarage } from '../../../services/garage';
 export const update = async (req: Request, res: Response) => {
   try {
     const { garageId } = req.params;
-    const body = req.body;
+    // const body = req.body;
 
     const garageToUpdate = await findGarageById(garageId);
 
@@ -14,7 +14,7 @@ export const update = async (req: Request, res: Response) => {
       });
     }
 
-    await updateGarage(garageId, body);
+    await updateGarage(garageId, { available: !garageToUpdate.available });
 
     return res.status(200).json({
       message: 'Garagem atualizada com sucesso',

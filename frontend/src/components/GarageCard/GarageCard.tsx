@@ -35,7 +35,7 @@ export const GarageCard = ({
 					<p>{street}</p>
 					<p>{neighborhood}</p>
 
-					{number ? <p>Número{number}</p> : <p>Sem número</p>}
+					{number ? <p>Número {number}</p> : <p>Sem número</p>}
 				</div>
 
 				<p className="text-2xl font-semibold">R$ {pricePerDay}</p>
