@@ -12,11 +12,16 @@ export const GarageDetails = () => {
 	const { garageId } = useParams();
 
 	const { loggedUser } = useAuth();
-	const { garage, findGarageById, rentGarage } = useGarages();
+	const { garage, findGarageById, updateGarage } = useGarages();
 
 	useEffect(() => {
 		findGarageById(garageId);
 	}, []);
+
+	const rentGarage = () => {
+		updateGarage({ available: !garage.available }, garage.id);
+		setTimeout(() => navigate('/'), 1000);
+	};
 
 	return (
 		<Container>
@@ -58,8 +63,7 @@ export const GarageDetails = () => {
 					) : (
 						<button
 							onClick={() => {
-								rentGarage(garageId);
-								setTimeout(() => navigate('/'), 1000);
+								rentGarage;
 							}}
 							className="mt-10 w-64 self-center rounded-2xl bg-blue-950 py-3 text-white transition duration-500 hover:bg-blue-900"
 						>

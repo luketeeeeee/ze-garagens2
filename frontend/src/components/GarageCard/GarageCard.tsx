@@ -42,7 +42,11 @@ export const GarageCard = ({
 
 				<div className="flex flex-col items-center">
 					<p>{city}</p>
-					<p>Dono: {owner.substring(0, owner.indexOf(' '))}</p>
+					{owner.includes(' ') ? (
+						<p>Dono: {owner.substring(0, owner.indexOf(' '))}</p>
+					) : (
+						<p>Dono: {owner}</p>
+					)}
 				</div>
 
 				<Link

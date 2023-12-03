@@ -4,7 +4,7 @@ type ContainerProps = {
 
 export const Container = ({ children }: ContainerProps) => {
 	return (
-		<div className="font-poppins text-mainFont bg-main-img h-full w-full overflow-hidden">
+		<div className="text-mainFont h-full w-full overflow-hidden bg-main-img">
 			{children}
 		</div>
 	);

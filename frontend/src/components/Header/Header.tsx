@@ -23,7 +23,7 @@ export const Header = () => {
 				/>
 			</Link>
 
-			<div className="flex items-center gap-12 text-white">
+			<div className="flex items-center gap-8 text-white">
 				<div className="flex gap-6">
 					<Link
 						to="/cadastrar-garagem"
@@ -40,10 +40,14 @@ export const Header = () => {
 				</div>
 
 				<div className="flex items-center gap-4">
-					<p>
-						Bem vindo,{' '}
-						{loggedUser.name.substring(0, loggedUser.name.indexOf(' '))}
-					</p>
+					{loggedUser.name.includes(' ') ? (
+						<p>
+							Bem vindo,{' '}
+							{loggedUser.name.substring(0, loggedUser.name.indexOf(' '))}
+						</p>
+					) : (
+						<p>Bem vindo, {loggedUser.name}</p>
+					)}
 					<UserCircleIcon width={36} />
 					<Popover>
 						<PopoverTrigger>

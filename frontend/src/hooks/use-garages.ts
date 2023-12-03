@@ -13,6 +13,12 @@ type CreateGarageProps = {
 	cep?: string;
 };
 
+type UpdateGarageProps = {
+	available?: boolean;
+	pricePerDay?: string;
+	ownerPhoneNumber?: string;
+};
+
 type GarageCardProps = {
 	id?: string;
 	available?: boolean;
@@ -32,7 +38,7 @@ type useGaragesProps = {
 	findAllGarages: () => void;
 	findGaragesByOwnerId: (ownerId: string) => void;
 	findGarageById: (garageId: string | undefined) => void;
-	rentGarage: (garageId: string | undefined) => void;
+	updateGarage: (data: UpdateGarageProps, garageId: string | undefined) => void;
 };
 
 export const useGarages = create<useGaragesProps>((set) => ({
@@ -128,7 +134,7 @@ export const useGarages = create<useGaragesProps>((set) => ({
 			}
 		} catch (error) {}
 	},
-	rentGarage: async (garageId) => {
+	updateGarage: async (data, garageId) => {
 		try {
 			await fetch(`${import.meta.env.VITE_API_URL}/garages/${garageId}`, {
 				method: 'PUT',
@@ -136,6 +142,7 @@ export const useGarages = create<useGaragesProps>((set) => ({
 					Authorization: `${import.meta.env.VITE_API_KEY}`,
 					'Content-Type': 'application/json',
 				},
+				body: JSON.stringify({ ...data }),
 			}).then(async (response) => {
 				if (!response.ok) {
 					return response.text().then((text) => {
